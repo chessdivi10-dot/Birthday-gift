@@ -1,46 +1,496 @@
-run-name: 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Comrade ❤️</title>
 
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
 
-# Simple workflow for deploying static content to GitHub Pages
-name: Deploy static content to Pages
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
 
-on:
-  # Runs on pushes targeting the default branch
-  push:
-    branches: ["main"]
+<style>
 
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
 
-# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
-permissions:
-  contents: read
-  pages: write
-  id-token: write
+body{
 
-# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
-# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
-concurrency:
-  group: "pages"
-  cancel-in-progress: false
+background:linear-gradient(135deg,#090909,#151515,#1f1f1f);
+color:white;
+overflow-x:hidden;
 
-jobs:
-  # Single deploy job since we're just deploying
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          # Upload entire repository
-          path: '.'
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v5
+}
+
+canvas{
+position:fixed;
+top:0;
+left:0;
+pointer-events:none;
+z-index:999;
+}
+
+.container{
+
+width:90%;
+max-width:700px;
+margin:auto;
+padding:40px 20px;
+text-align:center;
+
+}
+
+.hero{
+
+margin-top:40px;
+
+}
+
+.hero h1{
+
+font-size:42px;
+color:#ff8db8;
+
+}
+
+.hero h2{
+
+margin-top:10px;
+font-weight:300;
+
+}
+
+.date{
+
+margin-top:20px;
+font-size:18px;
+opacity:.8;
+
+}
+
+.countdown{
+
+margin-top:30px;
+font-size:22px;
+background:#ffffff10;
+padding:18px;
+border-radius:20px;
+backdrop-filter:blur(10px);
+
+}
+
+.card{
+
+margin-top:40px;
+padding:25px;
+background:#ffffff10;
+border-radius:25px;
+backdrop-filter:blur(15px);
+line-height:1.9;
+font-size:17px;
+text-align:left;
+
+}
+
+.card h2{
+
+text-align:center;
+margin-bottom:20px;
+color:#ff8db8;
+
+}
+
+.footer{
+
+margin:50px 0;
+opacity:.7;
+
+}
+
+.glow{
+
+animation:glow 2s infinite alternate;
+
+}
+
+@keyframes glow{
+
+from{
+text-shadow:0 0 10px #ff4d88;
+}
+
+to{
+
+text-shadow:0 0 25px #ff99bb;
+
+}
+
+}
+
+button{
+
+margin-top:35px;
+padding:15px 28px;
+border:none;
+border-radius:40px;
+background:#ff4d88;
+color:white;
+font-size:17px;
+cursor:pointer;
+transition:.3s;
+
+}
+
+button:hover{
+
+transform:scale(1.05);
+
+}
+
+@media(max-width:600px){
+
+.hero h1{
+
+font-size:34px;
+
+}
+
+.hero h2{
+
+font-size:20px;
+
+}
+
+.card{
+
+font-size:16px;
+
+}
+
+}
+
+</style>
+
+</head>
+<body>
+
+<canvas id="fireworks"></canvas>
+
+<div class="container">
+
+<div class="hero">
+
+<h1 class="glow">Happy Birthday ❤️</h1>
+
+<h2>Comrade</h2>
+
+<div class="date">
+
+🎂 27 August 2010
+
+<br><br>
+
+🌸 First Seen : 5 September 2024
+
+</div>
+
+<div class="countdown" id="countdown">
+
+Loading...
+
+</div>
+
+<button onclick="celebrate()">
+
+🎉 Celebrate
+
+</button>
+
+</div>
+
+<div class="card">
+
+<h2>💌 A Letter</h2>
+
+<p>
+
+Some stories end with two people together.
+
+Ours didn't.
+
+But that doesn't make it any less beautiful.
+
+<br><br>
+
+You taught me to dream bigger,
+
+work harder,
+
+and become a better person.
+
+Because of you,
+
+I found new goals,
+
+discovered new strength,
+
+and learned what it means
+
+to care for someone sincerely.
+
+<br><br>
+
+So this website isn't about asking for anything in return.
+
+It's simply a thank you.
+
+<br><br>
+
+Thank you for every smile,
+
+every conversation,
+
+every memory,
+
+and every lesson.
+
+<br><br>
+
+No matter where life takes us,
+
+you'll always be a beautiful chapter
+
+in my story.
+
+<br><br>
+
+<b>
+
+Happy Birthday,
+
+Comrade ❤️
+
+</b>
+
+</p>
+
+</div>
+
+<div class="footer">
+
+Made with ❤️
+
+</div>
+
+</div>
+
+<script>
+
+function celebrate(){
+
+confetti({
+
+particleCount:200,
+
+spread:180,
+
+origin:{y:0.6}
+
+});
+
+setTimeout(()=>{
+
+confetti({
+
+particleCount:150,
+
+angle:60,
+
+spread:80,
+
+origin:{x:0}
+
+});
+
+},300);
+
+setTimeout(()=>{
+
+confetti({
+
+particleCount:150,
+
+angle:120,
+
+spread:80,
+
+origin:{x:1}
+
+});
+
+},600);
+
+}
+
+celebrate();
+
+setInterval(celebrate,8000);
+
+function countdown(){
+
+let now=new Date();
+
+let year=now.getFullYear();
+
+let birthday=new Date(year,7,27);
+
+if(now>birthday){
+
+birthday=new Date(year+1,7,27);
+
+}
+
+let diff=birthday-now;
+
+let d=Math.floor(diff/1000/60/60/24);
+
+let h=Math.floor(diff/1000/60/60)%24;
+
+let m=Math.floor(diff/1000/60)%60;
+
+let s=Math.floor(diff/1000)%60;
+
+document.getElementById("countdown").innerHTML=
+
+"⏳ "+d+" Days "+h+" Hours "+m+" Minutes "+s+" Seconds until her Birthday";
+
+}
+
+setInterval(countdown,1000);
+
+countdown();
+
+const canvas=document.getElementById("fireworks");
+
+const ctx=canvas.getContext("2d");
+
+canvas.width=window.innerWidth;
+
+canvas.height=window.innerHeight;
+
+let fireworks=[];
+
+function Firework(){
+
+this.x=Math.random()*canvas.width;
+
+this.y=canvas.height;
+
+this.targetY=Math.random()*canvas.height/2;
+
+this.color=`hsl(${Math.random()*360},100%,60%)`;
+
+this.radius=2;
+
+this.speed=6;
+
+this.exploded=false;
+
+this.particles=[];
+
+}
+
+Firework.prototype.update=function(){
+
+if(!this.exploded){
+
+this.y-=this.speed;
+
+ctx.beginPath();
+
+ctx.arc(this.x,this.y,this.radius,0,Math.PI*2);
+
+ctx.fillStyle=this.color;
+
+ctx.fill();
+
+if(this.y<=this.targetY){
+
+this.exploded=true;
+
+for(let i=0;i<40;i++){
+
+this.particles.push({
+
+x:this.x,
+
+y:this.y,
+
+dx:(Math.random()-0.5)*6,
+
+dy:(Math.random()-0.5)*6,
+
+life:60
+
+});
+
+}
+
+}
+
+}else{
+
+this.particles.forEach(p=>{
+
+p.x+=p.dx;
+
+p.y+=p.dy;
+
+p.life--;
+
+ctx.fillStyle=this.color;
+
+ctx.fillRect(p.x,p.y,3,3);
+
+});
+
+}
+
+}
+
+function animate(){
+
+ctx.clearRect(0,0,canvas.width,canvas.height);
+
+if(Math.random()<0.05){
+
+fireworks.push(new Firework());
+
+}
+
+fireworks.forEach(f=>f.update());
+
+fireworks=fireworks.filter(f=>!f.exploded||f.particles.some(p=>p.life>0));
+
+requestAnimationFrame(animate);
+
+}
+
+animate();
+
+window.onresize=()=>{
+
+canvas.width=window.innerWidth;
+
+canvas.height=window.innerHeight;
+
+}
+
+</script>
+
+</body>
+</html>
